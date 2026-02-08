@@ -78,44 +78,22 @@
     <h1>Аналитика запчастей</h1>
 
     <select id="brand" onchange="loadModels()">
-    <option value="">Выберите марку</option>
-    <option value="Lada">Lada</option>
-    <option value="Chery">Chery</option>
-    <option value="Haval">Haval</option>
-    <option value="Geely">Geely</option>
-    <option value="Changan">Changan</option>
-    <option value="Kia">Kia</option>
-    <option value="Hyundai">Hyundai</option>
-    <option value="Toyota">Toyota</option>
-    <option value="Volkswagen">Volkswagen</option>
-    <option value="Renault">Renault</option>
-</select>
-const models = {
-    Lada: ["Granta", "Vesta", "Niva Legend", "Niva Travel"],
-    Chery: ["Tiggo 4", "Tiggo 7 Pro", "Tiggo 8 Pro"],
-    Haval: ["Jolion", "F7", "Dargo"],
-    Geely: ["Coolray", "Atlas Pro", "Monjaro"],
-    Changan: ["CS35", "CS55", "Uni-K"],
-    Kia: ["Rio", "Sportage", "Ceed"],
-    Hyundai: ["Solaris", "Creta", "Tucson"],
-    Toyota: ["Camry", "Corolla", "RAV4"],
-    Volkswagen: ["Polo", "Tiguan", "Passat"],
-    Renault: ["Logan", "Duster", "Sandero"]
-};
+        <option value="">Выберите марку</option>
+        <option value="Lada">Lada</option>
+        <option value="Chery">Chery</option>
+        <option value="Haval">Haval</option>
+        <option value="Geely">Geely</option>
+        <option value="Changan">Changan</option>
+        <option value="Kia">Kia</option>
+        <option value="Hyundai">Hyundai</option>
+        <option value="Toyota">Toyota</option>
+        <option value="Volkswagen">Volkswagen</option>
+        <option value="Renault">Renault</option>
+    </select>
 
-function loadModels() {
-    const brand = document.getElementById("brand").value;
-    const modelSelect = document.getElementById("model");
-
-    modelSelect.innerHTML = "<option>Выберите модель</option>";
-
-    if (models[brand]) {
-        models[brand].forEach(model => {
-            modelSelect.innerHTML += `<option>${model}</option>`;
-        });
-    }
-}
-
+    <select id="model">
+        <option>Выберите модель</option>
+    </select>
 
     <select id="engine">
         <option>Выберите модификацию</option>
@@ -134,13 +112,44 @@ function loadModels() {
 <script>
     const SITE_PASSWORD = "Avdeeva_Shalava2007";
 
+    const models = {
+        Lada: ["Granta", "Vesta", "Niva Legend", "Niva Travel"],
+        Chery: ["Tiggo 4", "Tiggo 7 Pro", "Tiggo 8 Pro"],
+        Haval: ["Jolion", "F7", "Dargo"],
+        Geely: ["Coolray", "Atlas Pro", "Monjaro"],
+        Changan: ["CS35", "CS55", "Uni-K"],
+        Kia: ["Rio", "Sportage", "Ceed"],
+        Hyundai: ["Solaris", "Creta", "Tucson"],
+        Toyota: ["Camry", "Corolla", "RAV4"],
+        Volkswagen: ["Polo", "Tiguan", "Passat"],
+        Renault: ["Logan", "Duster", "Sandero"]
+    };
+
     function login() {
         const input = document.getElementById("password").value;
+        const error = document.getElementById("error");
+
         if (input === SITE_PASSWORD) {
             document.getElementById("loginCard").classList.add("hidden");
             document.getElementById("appCard").classList.remove("hidden");
+            error.textContent = "";
         } else {
-            document.getElementById("error").textContent = "Неверный пароль";
+            error.textContent = "Неверный пароль";
+        }
+    }
+
+    function loadModels() {
+        const brand = document.getElementById("brand").value;
+        const modelSelect = document.getElementById("model");
+
+        modelSelect.innerHTML = "<option>Выберите модель</option>";
+
+        if (models[brand]) {
+            models[brand].forEach(model => {
+                const option = document.createElement("option");
+                option.textContent = model;
+                modelSelect.appendChild(option);
+            });
         }
     }
 
