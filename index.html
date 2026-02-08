@@ -139,7 +139,7 @@
 }
 
 
-   function downloadExcel() {
+ function downloadExcel() {
     const data = [
         ["Марка", "Модель", "Модификация", "Запчасть", "Номер", "Сторона", "Спрос", "Средняя цена", "Рекоменд. цена"],
         ["Toyota", "Camry", "2.5 бензин", "Тормозные колодки", "04465-06090", "перед", "82%", "4200 ₽", "3790 ₽"],
@@ -154,7 +154,13 @@
     });
 
     const encodedUri = encodeURI(csvContent);
-    const link = docume
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", "autoparts_analysis.csv");
+    document.body.appendChild(link);
+    link.click();
+}
+
 
     }
 </script>
