@@ -2,38 +2,47 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Аналитика автозапчастей</title>
+    <title>AutoParts Analytics</title>
     <style>
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            background: #0f172a;
+            background: #020617;
             color: white;
         }
 
         .header {
             background: #020617;
-            padding: 20px;
-            text-align: center;
-            font-size: 24px;
-            font-weight: bold;
+            padding: 20px 40px;
             border-bottom: 1px solid #1e293b;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: #22c55e;
         }
 
         .container {
             max-width: 900px;
-            margin: 40px auto;
+            margin: 80px auto;
             background: #020617;
-            padding: 30px;
-            border-radius: 12px;
+            padding: 40px;
+            border-radius: 14px;
             border: 1px solid #1e293b;
         }
 
+        h1 {
+            margin-top: 0;
+        }
+
         input, button {
-            padding: 12px;
+            padding: 14px;
             font-size: 16px;
-            margin-top: 10px;
-            border-radius: 8px;
+            border-radius: 10px;
             border: none;
         }
 
@@ -49,17 +58,18 @@
             color: black;
             cursor: pointer;
             margin-left: 10px;
+            font-weight: bold;
         }
 
         table {
             width: 100%;
-            margin-top: 25px;
+            margin-top: 30px;
             border-collapse: collapse;
         }
 
         th, td {
             border: 1px solid #1e293b;
-            padding: 12px;
+            padding: 14px;
             text-align: center;
         }
 
@@ -67,20 +77,25 @@
             background: #020617;
         }
 
-        tr:hover {
-            background: #0f172a;
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: #94a3b8;
+            font-size: 14px;
         }
     </style>
 </head>
 <body>
 
 <div class="header">
-    Аналитика автозапчастей
+    <div class="logo">AutoParts Analytics</div>
 </div>
 
 <div class="container">
-    <h2>Введите модель автомобиля</h2>
-    <input id="car" placeholder="Например: Kia Rio, Solaris, Camry">
+    <h1>Аналитика спроса на автозапчасти</h1>
+    <p>Введите модель автомобиля, чтобы увидеть популярные запчасти и рекомендованные цены.</p>
+
+    <input id="car" placeholder="Например: Kia Rio, Camry, Solaris">
     <button onclick="analyze()">Анализ</button>
 
     <table id="result" style="display:none;">
@@ -88,18 +103,22 @@
             <th>Запчасть</th>
             <th>Спрос</th>
             <th>Средняя цена</th>
-            <th>Твоя цена</th>
+            <th>Рекомендуемая цена</th>
         </tr>
     </table>
+</div>
+
+<div class="footer">
+    © 2026 AutoParts Analytics
 </div>
 
 <script>
 function analyze() {
     const parts = [
-        {name: "Масляный фильтр", demand: "высокий", price: 600},
-        {name: "Тормозные колодки", demand: "высокий", price: 2200},
-        {name: "Свечи зажигания", demand: "средний", price: 1100},
-        {name: "Воздушный фильтр", demand: "высокий", price: 750}
+        {name: "Масляный фильтр", demand: "Высокий", price: 600},
+        {name: "Тормозные колодки", demand: "Высокий", price: 2200},
+        {name: "Свечи зажигания", demand: "Средний", price: 1100},
+        {name: "Воздушный фильтр", demand: "Высокий", price: 750}
     ];
 
     const table = document.getElementById("result");
@@ -110,7 +129,7 @@ function analyze() {
             <th>Запчасть</th>
             <th>Спрос</th>
             <th>Средняя цена</th>
-            <th>Твоя цена</th>
+            <th>Рекомендуемая цена</th>
         </tr>
     `;
 
