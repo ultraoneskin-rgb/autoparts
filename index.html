@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Аналитика автозапчастей</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f4f6f8;
+            padding: 40px;
+        }
+        .container {
+            max-width: 700px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        input, button {
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        td, th {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background: #2c3e50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Аналитика автозапчастей</h2>
+    <input id="car" placeholder="Введите модель авто (например Kia Rio)">
+    <br>
+    <button onclick="analyze()">Показать популярные запчасти</button>
+
+    <table id="result" style="display:none;">
+        <tr>
+            <th>Запчасть</th>
+            <th>Спрос</th>
+            <th>Средняя цена</th>
+            <th>Рекомендуемая цена</th>
+        </tr>
+    </table>
+</div>
+
+<script>
+function analyze() {
+    const parts = [
+        {name: "Масляный фильтр", demand: "высокий", price: 600},
+        {name: "Тормозные колодки", demand: "высокий", price: 2200},
+        {name: "Свечи зажигания", demand: "средний", price: 1100},
+        {name: "Воздушный фильтр", demand: "высокий", price: 750}
+    ];
+
+    const table = document.getElementById("result");
+    table.style.display = "table";
+
+    table.innerHTML = `
+        <tr>
+            <th>Запчасть</th>
+            <th>Спрос</th>
+            <th>Средняя цена</th>
+            <th>Рекомендуемая цена</th>
+        </tr>
+    `;
+
+    parts.forEach(part => {
+        const myPrice = Math.round(part.price * 0.9);
+        table.innerHTML += `
+            <tr>
+                <td>${part.name}</td>
+                <td>${p
