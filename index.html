@@ -121,47 +121,43 @@
     }
 
     function showAnalytics() {
-    const result = document.getElementById("result");
-    result.innerHTML = `
-        <b>Популярные запчасти:</b><br><br>
-        1. Тормозные колодки — спрос 82%<br>
-        Средняя цена: 4 200 ₽<br>
-        Рекомендуемая цена продажи: 3 790 ₽<br><br>
+        const result = document.getElementById("result");
+        result.innerHTML = `
+            <b>Популярные запчасти:</b><br><br>
+            1. Тормозные колодки — спрос 82%<br>
+            Средняя цена: 4 200 ₽<br>
+            Рекомендуемая цена продажи: 3 790 ₽<br><br>
 
-        2. Амортизатор передний — спрос 64%<br>
-        Средняя цена: 7 500 ₽<br>
-        Рекомендуемая цена продажи: 6 790 ₽<br><br>
+            2. Амортизатор передний — спрос 64%<br>
+            Средняя цена: 7 500 ₽<br>
+            Рекомендуемая цена продажи: 6 790 ₽<br><br>
 
-        3. Рычаг подвески — спрос 51%<br>
-        Средняя цена: 8 900 ₽<br>
-        Рекомендуемая цена продажи: 7 990 ₽
-    `;
-}
+            3. Рычаг подвески — спрос 51%<br>
+            Средняя цена: 8 900 ₽<br>
+            Рекомендуемая цена продажи: 7 990 ₽
+        `;
+    }
 
+    function downloadExcel() {
+        const data = [
+            ["Марка", "Модель", "Модификация", "Запчасть", "Номер", "Сторона", "Спрос", "Средняя цена", "Рекоменд. цена"],
+            ["Toyota", "Camry", "2.5 бензин", "Тормозные колодки", "04465-06090", "перед", "82%", "4200 ₽", "3790 ₽"],
+            ["Toyota", "Camry", "2.5 бензин", "Амортизатор", "48520-80333", "перед левый", "64%", "7500 ₽", "6790 ₽"],
+            ["Toyota", "Camry", "2.5 бензин", "Амортизатор", "48510-80334", "перед правый", "64%", "7500 ₽", "6790 ₽"],
+            ["Toyota", "Camry", "2.5 бензин", "Рычаг подвески", "48068-06140", "перед левый", "51%", "8900 ₽", "7990 ₽"]
+        ];
 
- function downloadExcel() {
-    const data = [
-        ["Марка", "Модель", "Модификация", "Запчасть", "Номер", "Сторона", "Спрос", "Средняя цена", "Рекоменд. цена"],
-        ["Toyota", "Camry", "2.5 бензин", "Тормозные колодки", "04465-06090", "перед", "82%", "4200 ₽", "3790 ₽"],
-        ["Toyota", "Camry", "2.5 бензин", "Амортизатор", "48520-80333", "перед левый", "64%", "7500 ₽", "6790 ₽"],
-        ["Toyota", "Camry", "2.5 бензин", "Амортизатор", "48510-80334", "перед правый", "64%", "7500 ₽", "6790 ₽"],
-        ["Toyota", "Camry", "2.5 бензин", "Рычаг подвески", "48068-06140", "перед левый", "51%", "8900 ₽", "7990 ₽"]
-    ];
+        let csvContent = "data:text/csv;charset=utf-8,";
+        data.forEach(row => {
+            csvContent += row.join(";") + "\n";
+        });
 
-    let csvContent = "data:text/csv;charset=utf-8,";
-    data.forEach(row => {
-        csvContent += row.join(";") + "\n";
-    });
-
-    const encodedUri = encodeURI(csvContent);
-    const link = document.createElement("a");
-    link.setAttribute("href", encodedUri);
-    link.setAttribute("download", "autoparts_analysis.csv");
-    document.body.appendChild(link);
-    link.click();
-}
-
-
+        const encodedUri = encodeURI(csvContent);
+        const link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", "autoparts_analysis.csv");
+        document.body.appendChild(link);
+        link.click();
     }
 </script>
 
