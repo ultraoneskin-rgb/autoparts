@@ -5,51 +5,90 @@
     <title>Аналитика автозапчастей</title>
     <style>
         body {
-            font-family: Arial;
-            background: #f4f6f8;
-            padding: 40px;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #0f172a;
+            color: white;
         }
-        .container {
-            max-width: 700px;
-            margin: auto;
-            background: white;
+
+        .header {
+            background: #020617;
             padding: 20px;
-            border-radius: 10px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            border-bottom: 1px solid #1e293b;
         }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: #020617;
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #1e293b;
+        }
+
         input, button {
-            padding: 10px;
+            padding: 12px;
             font-size: 16px;
             margin-top: 10px;
+            border-radius: 8px;
+            border: none;
         }
+
+        input {
+            width: 70%;
+            background: #0f172a;
+            color: white;
+            border: 1px solid #1e293b;
+        }
+
+        button {
+            background: #22c55e;
+            color: black;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
         table {
             width: 100%;
-            margin-top: 20px;
+            margin-top: 25px;
             border-collapse: collapse;
         }
-        td, th {
-            border: 1px solid #ddd;
-            padding: 10px;
+
+        th, td {
+            border: 1px solid #1e293b;
+            padding: 12px;
             text-align: center;
         }
+
         th {
-            background: #2c3e50;
-            color: white;
+            background: #020617;
+        }
+
+        tr:hover {
+            background: #0f172a;
         }
     </style>
 </head>
 <body>
+
+<div class="header">
+    Аналитика автозапчастей
+</div>
+
 <div class="container">
-    <h2>Аналитика автозапчастей</h2>
-    <input id="car" placeholder="Введите модель авто (например Kia Rio)">
-    <br>
-    <button onclick="analyze()">Показать популярные запчасти</button>
+    <h2>Введите модель автомобиля</h2>
+    <input id="car" placeholder="Например: Kia Rio, Solaris, Camry">
+    <button onclick="analyze()">Анализ</button>
 
     <table id="result" style="display:none;">
         <tr>
             <th>Запчасть</th>
             <th>Спрос</th>
             <th>Средняя цена</th>
-            <th>Рекомендуемая цена</th>
+            <th>Твоя цена</th>
         </tr>
     </table>
 </div>
@@ -71,7 +110,7 @@ function analyze() {
             <th>Запчасть</th>
             <th>Спрос</th>
             <th>Средняя цена</th>
-            <th>Рекомендуемая цена</th>
+            <th>Твоя цена</th>
         </tr>
     `;
 
@@ -80,4 +119,14 @@ function analyze() {
         table.innerHTML += `
             <tr>
                 <td>${part.name}</td>
-                <td>${p
+                <td>${part.demand}</td>
+                <td>${part.price} ₽</td>
+                <td>${myPrice} ₽</td>
+            </tr>
+        `;
+    });
+}
+</script>
+
+</body>
+</html>
